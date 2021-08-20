@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ROLE, User } from './user.model';
-import { UsersService } from './users.service';
+import { UsersService } from './users/users.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   loading = false;
   btnText = 'Load';
   users: User[] = [];
-  constructor(private usersService: UsersService) { }
+  constructor(private usersService: UsersService) {}
   ngOnInit() {
     this.usersService.usersChanged.subscribe((user) => {
       this.users = user;

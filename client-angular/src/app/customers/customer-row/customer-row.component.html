@@ -13,17 +13,9 @@
         [attr.disabled]="!editMode ? 'disabled' : null" />
 </td>
 <td class="d-flex">
-    <button class="btn btn-secondary pe-2" (click)="btnShowUsersClick">Show</button>
-    <input type="text" class="form-control" [ngClass]="editMode ? 'edit' : 'no-edit'"
-        value="{{customer.users ? customer.users.length : 0}}" [attr.disabled]="'disabled'" />
+    <button class="btn btn-secondary pe-2" (click)="btnShowUsersClick()">Show</button>
 
 </td>
-
-
-<!-- <td>
-    <input type="text" class="form-control" [(ngModel)]="customer.users?.length"
-        [ngClass]="editMode ? 'edit' : 'no-edit'" [attr.disabled]="!editMode ? 'disabled' : null" />
-</td> -->
 
 
 <td>

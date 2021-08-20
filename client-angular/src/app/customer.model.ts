@@ -1,7 +1,7 @@
 import { User } from "./user.model";
 
 export class Customer {
-    id!: string;
+    id!: number;
     name!: string;
     website?: string;
     address!: string;

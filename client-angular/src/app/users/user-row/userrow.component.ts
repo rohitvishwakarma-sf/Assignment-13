@@ -7,7 +7,7 @@ import {
   Output,
 } from '@angular/core';
 import { ROLE, User } from 'src/app/user.model';
-import { UsersService } from 'src/app/users.service';
+import { UsersService } from 'src/app/users/users.service';
 
 @Component({
   selector: '[app-user-row]',
@@ -28,7 +28,7 @@ export class RowComponent implements OnInit {
   roleKeys(): string[] {
     return Object.keys(ROLE);
   }
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   btnEditClick() {
     this.editMode = true;
@@ -43,6 +43,7 @@ export class RowComponent implements OnInit {
       },
       () => {
         this.deleting = false;
+        this.onUserDelete.emit(this.user.id);
         console.log('deleted user ' + this.user.firstName);
       }
     );

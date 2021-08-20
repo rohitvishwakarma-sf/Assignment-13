@@ -1,21 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Observable, ObservedValueOf } from 'rxjs';
-import { baseURL } from './globals';
-import { ICRUD } from './ICRUD';
-import { User } from './user.model';
+import { baseURL } from '../globals';
+import { ICRUD } from '../ICRUD';
+import { User } from '../user.model';
 import { map } from 'rxjs/operators';
 
 @Injectable()
 export class UsersService implements ICRUD<User> {
   usersChanged = new EventEmitter<User[]>();
   users: User[] = [];
-  constructor(private http: HttpClient) { }
+  private isFetched = false;
+  constructor(private http: HttpClient) {}
 
   // fetch users
-  async getAll(): Promise<User[]> {
-    const url = `${baseURL}/users?filter[include][]=customer&filter[include][]=roles`;
-    this.users = await this.http.get<User[]>(url).toPromise();
+  async getAll(force: boolean = false): Promise<User[]> {
+    if (force || this.isFetched === false) {
+      const url = `${baseURL}/users?filter[include][]=customer&filter[include][]=roles`;
+      this.users = await this.http.get<User[]>(url).toPromise();
+    }
     return this.users.slice();
   }
 
